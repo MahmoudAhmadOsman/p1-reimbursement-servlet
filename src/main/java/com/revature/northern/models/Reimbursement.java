@@ -1,6 +1,7 @@
 package com.revature.northern.models;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 
 public class Reimbursement {
     private String reim_id;
@@ -8,7 +9,7 @@ public class Reimbursement {
     private LocalDate submitted;
     private LocalDate resolved;
     private String description;
-    private byte receipt;
+    private byte[] receipt;
 
     private String payment_id;
     private String author_id;
@@ -19,8 +20,7 @@ public class Reimbursement {
     public Reimbursement() {
     }
 
-
-    public Reimbursement(String reim_id, double amount, LocalDate submitted, LocalDate resolved, String description, byte receipt, String payment_id, String author_id, String resolver_id, String status_id, String type_id) {
+    public Reimbursement(String reim_id, double amount, LocalDate submitted, LocalDate resolved, String description, byte[] receipt, String payment_id, String author_id, String resolver_id, String status_id, String type_id) {
         this.reim_id = reim_id;
         this.amount = amount;
         this.submitted = submitted;
@@ -33,7 +33,6 @@ public class Reimbursement {
         this.status_id = status_id;
         this.type_id = type_id;
     }
-
 
     public String getReim_id() {
         return reim_id;
@@ -75,11 +74,11 @@ public class Reimbursement {
         this.description = description;
     }
 
-    public byte getReceipt() {
+    public byte[] getReceipt() {
         return receipt;
     }
 
-    public void setReceipt(byte receipt) {
+    public void setReceipt(byte[] receipt) {
         this.receipt = receipt;
     }
 
@@ -125,13 +124,13 @@ public class Reimbursement {
 
     @Override
     public String toString() {
-        return "ReimbursementDOA{" +
+        return "Reimbursement{" +
                 "reim_id='" + reim_id + '\'' +
                 ", amount=" + amount +
                 ", submitted=" + submitted +
                 ", resolved=" + resolved +
                 ", description='" + description + '\'' +
-                ", receipt=" + receipt +
+                ", receipt=" + Arrays.toString(receipt) +
                 ", payment_id='" + payment_id + '\'' +
                 ", author_id='" + author_id + '\'' +
                 ", resolver_id='" + resolver_id + '\'' +
