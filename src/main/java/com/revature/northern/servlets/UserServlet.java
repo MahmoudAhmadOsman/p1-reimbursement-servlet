@@ -48,13 +48,13 @@ public class UserServlet extends HttpServlet {
 
 
     //Get list of all users
-//    @Override
-//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        List<User> userLsit = userService.getAllUsers();
-//        resp.setContentType("application/json");
-//        resp.getWriter().write(mapper.writeValueAsString(userLsit));
-//    }
-
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        resp.getWriter().write("<h1>UserServlet doGet method! </h1>");
+        List<User> userLsit = userService.getAllUsers();
+        resp.setContentType("application/json");
+        resp.getWriter().write(mapper.writeValueAsString(userLsit));
+    }
 
 
 }

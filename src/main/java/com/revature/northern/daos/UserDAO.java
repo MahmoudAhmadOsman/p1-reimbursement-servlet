@@ -1,6 +1,5 @@
 package com.revature.northern.daos;
 
-import com.revature.northern.models.Reimbursement;
 import com.revature.northern.models.User;
 import com.revature.northern.utils.custom_exceptions.InvalidSQLException;
 import com.revature.northern.utils.database.ConnectionFactory;
@@ -85,7 +84,7 @@ public class UserDAO implements CrudDAO<User> {
         List<User> userList = new ArrayList<>();
 
         try (Connection con = ConnectionFactory.getInstance().getConnection()) {
-            PreparedStatement ps = con.prepareStatement("select * from users");
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM users");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {

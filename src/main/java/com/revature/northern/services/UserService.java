@@ -29,48 +29,7 @@ public class UserService {
     }
 
 
-    //User Registering method
-//    public void register(User user) {
-//        userDAO.save(user);
-//    }
-//    public User register(NewUserRequest request) {
-//        User user = null;
-//
-//        //Check if username & password are valid
-//        if (isValidUsername(request.getUsername())) {
-//            if (!isDuplicateUsername(request.getUsername())) {
-//                if (isValidPassword(request.getPassword1())) {
-//                    if (isSamePassword(request.getPassword1(), request.getPassword2())) {
-//                        //user = new User(); - you can do this as well
-//                        //user = userDAO.getUserByUsernameAndPassword(request.getUsername(), request.getPassword1()); // you can also do this to call the save method in userDAO
-//                        user = new User(UUID.randomUUID().toString(), request.getUsername(), request.getPassword1());
-//
-//                        /*
-//                             == match with your User model, the new ers_reimbursement model
-//                                user = new User();
-//                                user.setUser_id(UUID.randomUUID().toString());
-//                                user.setUsername(request.getUsername());
-//                                user.setEmail(request.getEmail());
-//                                user.setPassword(request.getPassword1());
-//                                user.setGiven_name(request.getGiven_name());
-//                                user.setSurname(request.getSurname());
-//                                user.setActive(request.isActive());
-//                                user.setRole_id(request.getRole_id());
-//                                userDAO.save(user);
-//                        * */
-//
-//
-//                        userDAO.save(user);
-//                    }
-//                }
-//            }
-//        }
-//
-//        return user;
-//    }
-
-
-    //register now takes NewUserRequest as a parameter
+    //User Registering method -- register method, now takes NewUserRequest as a parameter
     //Similar to UserService model validation concept, but this time is Servlet validation
     public User register(NewUserRequest request) {
         User user = null;
@@ -99,11 +58,14 @@ public class UserService {
     }
 
     //Login now becomes Principal
+
 //    public Principal login(LoginRequest request) {
 //        User user = userDAO.getUserByUsernameAndPassword(request.getUsername(), request.getPassword());
 //        if (user == null) throw new AuthenticationException("\nIncorrect username or password!!");
-//        return new Principal(user.getId(), user.getUsername(), user.getRole());
+//        return new Principal(user.getUser_id(), user.getUsername(), user.getRole_id());
 //    }
+
+    //Testing login password encryption - commented on 9/7
     public Principal login(LoginRequest request) {
         User user = userDAO.getUserByUsernameAndPassword(request.getUsername(), request.getPassword());
         if (user == null) throw new AuthenticationException("\nIncorrect username or password!!");
