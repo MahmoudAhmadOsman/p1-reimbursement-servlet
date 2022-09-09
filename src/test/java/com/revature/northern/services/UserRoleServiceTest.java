@@ -36,6 +36,12 @@ public class UserRoleServiceTest {
 
     }
 
+    @Test
+    public void test_isValidRole_givenCorrectRole() {
+        String validRole = "EMPLOYEE";
 
+        boolean flag = sut.isValidRole(validRole);
+        Assert.assertTrue(flag);
+    }
 
 }
