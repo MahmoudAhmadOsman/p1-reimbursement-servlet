@@ -3,6 +3,8 @@ package com.revature.northern.services;
 import com.revature.northern.daos.UserRoleDAO;
 import com.revature.northern.dtos.requests.NewUserRoleRequest;
 import com.revature.northern.models.UserRole;
+import com.revature.northern.utils.custom_exceptions.InvalidRequestException;
+import com.revature.northern.utils.custom_exceptions.InvalidUserException;
 
 import java.io.IOException;
 import java.util.List;
@@ -41,12 +43,30 @@ public class UserRoleService {
         return userRoleDAO.getById(id);
     }
 
-    public void updateUserRole(UserRole id){
+    public void updateUserRole(UserRole id) {
         userRoleDAO.update(id);
     }
 
     // public UserRole updateUserRole(UserRole role_id) {
     //        userRoleDAO.update(role_id);
     //    }
+
+
+    /******* UserRoleService Validations *********/
+
+    public boolean isValidRoleId(String role_id) {
+        if (role_id.isEmpty()) throw new InvalidUserException("\nUserRole id is required!!");
+        if (role_id.length() < 2)
+            throw new InvalidUserException("\nRole id must be 2 or more characters!");
+        return true;
+    }
+
+    public boolean isValidRole(String role) {
+        if (role.isEmpty()) throw new InvalidUserException("\nUser role  is required!!");
+        if (role.length() < 3)
+            throw new InvalidUserException("\nUser role  must be 3 or more characters!");
+        return true;
+    }
+
 
 }
