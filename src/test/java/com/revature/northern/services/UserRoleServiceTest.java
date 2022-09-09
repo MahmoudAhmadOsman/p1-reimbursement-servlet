@@ -26,7 +26,7 @@ public class UserRoleServiceTest {
     public void test_isValidRoleId_givenCorrectRoleId() {
 
         //A1- 1. Arrange
-        String validRoleId = "1234667744665";
+        String validRoleId = "993b60a8-0ab7-49ef-975f-01100e27cabc";
 
         //Act
         boolean flag = sut.isValidRole(validRoleId);
