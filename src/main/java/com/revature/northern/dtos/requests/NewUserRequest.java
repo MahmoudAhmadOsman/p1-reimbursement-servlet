@@ -12,7 +12,6 @@ public class NewUserRequest {
     private String given_name;
     private String surname;
 
-
 /* use this NewUserRequest model-- when registering new user in POSTMAN and use these field in UserDAO and UserService classes*/
 
     public NewUserRequest() {

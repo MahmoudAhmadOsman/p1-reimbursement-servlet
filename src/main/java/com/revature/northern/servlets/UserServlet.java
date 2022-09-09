@@ -27,7 +27,7 @@ public class UserServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("inside doPost");
+//        System.out.println("inside doPost");
         try {
             NewUserRequest request = mapper.readValue(req.getInputStream(), NewUserRequest.class);
             User createdUser = userService.register(request);
