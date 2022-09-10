@@ -64,11 +64,11 @@ public class UserRoleDAO implements CrudDAO<UserRole> {
                         " doesn't exist!"
                 );
 
-            } else System.out.println("UserRole with this role_id is not found!!!"); // if role_id is not found
+            } else System.out.println("UserRole with this role_id is not found!!!"); // if role_id isn't found
 
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new InvalidSQLException("An error occurred while tyring find UserRole!!");
+            throw new InvalidSQLException("An error occurred while tyring find a UserRole!!");
         }
 
         return getByItsId;

@@ -1,8 +1,10 @@
 package com.revature.northern.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.northern.daos.ReimbursementDOA;
 import com.revature.northern.daos.UserDAO;
 import com.revature.northern.daos.UserRoleDAO;
+import com.revature.northern.services.ReimbursementService;
 import com.revature.northern.services.UserRoleService;
 import com.revature.northern.services.UserService;
 import com.revature.northern.servlets.*;
@@ -20,9 +22,10 @@ public class ContextLoaderListener implements ServletContextListener {
         /* Dependency Injection */
         TestServlet testServlet = new TestServlet();
         UserServlet userServlet = new UserServlet(mapper, new UserService(new UserDAO()));
+        ReimbursementServlet reimbursementServlet = new ReimbursementServlet(mapper, new ReimbursementService(new ReimbursementDOA()));
+        UserRoleServlet userRoleServlet = new UserRoleServlet(mapper, new UserRoleService(new UserRoleDAO())); //UserRoles
 
-        //UserRoles
-        UserRoleServlet userRoleServlet = new UserRoleServlet(mapper, new UserRoleService(new UserRoleDAO()));
+
 
         /* Need ServletContext class to map whatever servlet to url path. */
         ServletContext context = sce.getServletContext();
@@ -32,8 +35,11 @@ public class ContextLoaderListener implements ServletContextListener {
         context.addServlet("UserServlet", userServlet).addMapping("/users/*"); // all users
 
 
-        //UserRoles ServletContext
+        //UserRoles route
         context.addServlet("UserRoleServlet", userRoleServlet).addMapping("/roles");  // http://localhost:8080/northern/roles
+
+        //Reimbursements rout
+        context.addServlet("ReimbursementServlet", reimbursementServlet).addMapping("/reimbursements");
 
 
     }
