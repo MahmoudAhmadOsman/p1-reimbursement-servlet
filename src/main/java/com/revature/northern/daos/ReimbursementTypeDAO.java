@@ -1,13 +1,16 @@
 package com.revature.northern.daos;
 
 import com.revature.northern.models.ReimbursementType;
+import com.revature.northern.models.UserRole;
 import com.revature.northern.utils.custom_exceptions.InvalidSQLException;
 import com.revature.northern.utils.database.ConnectionFactory;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReimbursementTypeDAO implements CrudDAO<ReimbursementType> {
@@ -43,6 +46,19 @@ public class ReimbursementTypeDAO implements CrudDAO<ReimbursementType> {
 
     @Override
     public List<ReimbursementType> getAll() {
-        return null;
+        List<ReimbursementType> ReimbTypeleList = new ArrayList<>();
+
+        try (Connection con = ConnectionFactory.getInstance().getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM ers_reimbursement_types");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ReimbursementType ReimbType = new ReimbursementType(rs.getString("type_id"), rs.getString("type"));
+                ReimbTypeleList.add(ReimbType);
+            }
+
+        } catch (SQLException e) {
+            throw new InvalidSQLException("An error occurred while tyring to get ReimbursementType from the database.");
+        }
+        return ReimbTypeleList;
     }
 }

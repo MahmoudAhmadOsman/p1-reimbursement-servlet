@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 public class ReimbursementTypeServlet extends HttpServlet {
     private final ObjectMapper mapper;
@@ -24,13 +25,14 @@ public class ReimbursementTypeServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        super.doGet(req, resp);
-
+//        resp.getWriter().write("<h1>Get reimbursement type route!! </h1>");
+        List<ReimbursementType> reimbursementTypeList = reimbursementTypeService.getAllReimbursementType();
+        resp.setContentType("application/json");
+        resp.getWriter().write(mapper.writeValueAsString(reimbursementTypeList));
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        super.doPost(req, resp);
 
         try {
             NewRequestReimbursementType request = mapper.readValue(req.getInputStream(), NewRequestReimbursementType.class);

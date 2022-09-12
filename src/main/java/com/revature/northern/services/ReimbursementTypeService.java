@@ -5,6 +5,7 @@ import com.revature.northern.dtos.requests.NewReimbursementRequest;
 import com.revature.northern.dtos.requests.NewRequestReimbursementType;
 import com.revature.northern.models.ReimbursementType;
 
+import java.util.List;
 import java.util.UUID;
 
 public class ReimbursementTypeService {
@@ -21,6 +22,14 @@ public class ReimbursementTypeService {
         ReimbursementType reimbursementType = new ReimbursementType(request.getType_id(), request.getType());
         reimbursementTypeDAO.save(reimbursementType);
         return reimbursementType;
+    }
+
+
+
+//Get All Reimbursement Types
+
+    public List<ReimbursementType> getAllReimbursementType(){
+        return  reimbursementTypeDAO.getAll();
     }
 
 
