@@ -25,11 +25,9 @@ public class ReimbursementTypeService {
     }
 
 
-
 //Get All Reimbursement Types
-
-    public List<ReimbursementType> getAllReimbursementType(){
-        return  reimbursementTypeDAO.getAll();
+    public List<ReimbursementType> getAllReimbursementType() {
+        return reimbursementTypeDAO.getAll();
     }
 
 
