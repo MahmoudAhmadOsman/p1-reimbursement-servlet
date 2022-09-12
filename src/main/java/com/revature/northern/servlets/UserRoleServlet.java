@@ -58,7 +58,7 @@ public class UserRoleServlet extends HttpServlet {
             resp.setStatus(404);
             resp.getWriter().write(mapper.writeValueAsString(e.getMessage()));
         } catch (ResourceConflictException e) {
-            resp.getWriter().write("This UserRoute doesn't exist!");
+            resp.getWriter().write("UserRoute route doesn't exist!");
             resp.setStatus(409);
         }
 

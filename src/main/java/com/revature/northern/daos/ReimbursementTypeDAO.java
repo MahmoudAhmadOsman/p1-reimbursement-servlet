@@ -21,7 +21,8 @@ public class ReimbursementTypeDAO implements CrudDAO<ReimbursementType> {
 
             ps.executeUpdate();
         } catch (SQLException e) {
-            throw new InvalidSQLException("\nAn error occurred while tyring to save Reimbursement Type data into the database!!.");
+            e.printStackTrace();
+            throw new InvalidSQLException("\nAn error occurred while tyring to save Reimbursement Type data into the database!!." + e.getMessage());
         }
     }
 

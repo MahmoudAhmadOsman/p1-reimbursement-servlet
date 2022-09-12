@@ -31,7 +31,7 @@ public class ReimbursementDOA implements CrudDAO<Reimbursement>{
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new InvalidSQLException("An error occurred when tyring to save reimbursement into the database!!");
+            throw new InvalidSQLException("An error occurred when tyring to save reimbursement into the database!! " + e.getMessage());
         }
     }
 

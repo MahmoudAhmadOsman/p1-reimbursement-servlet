@@ -1,9 +1,9 @@
 package com.revature.northern.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.northern.dtos.requests.NewReimbursementRequest;
-import com.revature.northern.models.Reimbursement;
-import com.revature.northern.services.ReimbursementService;
+import com.revature.northern.dtos.requests.NewRequestReimbursementType;
+import com.revature.northern.models.ReimbursementType;
+import com.revature.northern.services.ReimbursementTypeService;
 import com.revature.northern.utils.custom_exceptions.InvalidSQLException;
 import com.revature.northern.utils.custom_exceptions.ResourceConflictException;
 
@@ -13,20 +13,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ReimbursementServlet extends HttpServlet {
-
+public class ReimbursementTypeServlet extends HttpServlet {
     private final ObjectMapper mapper;
-    private final ReimbursementService reimbursementService;
+    private final ReimbursementTypeService reimbursementTypeService;
 
-    public ReimbursementServlet(ObjectMapper mapper, ReimbursementService reimbursementService) {
+    public ReimbursementTypeServlet(ObjectMapper mapper, ReimbursementTypeService reimbursementTypeService) {
         this.mapper = mapper;
-        this.reimbursementService = reimbursementService;
+        this.reimbursementTypeService = reimbursementTypeService;
     }
-
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+//        super.doGet(req, resp);
+
     }
 
     @Override
@@ -34,26 +33,24 @@ public class ReimbursementServlet extends HttpServlet {
 //        super.doPost(req, resp);
 
         try {
-
-            NewReimbursementRequest request = mapper.readValue(req.getInputStream(), NewReimbursementRequest.class);
-            Reimbursement createReimbursement = reimbursementService.createReimbursement(request);
-
+            NewRequestReimbursementType request = mapper.readValue(req.getInputStream(), NewRequestReimbursementType.class);
+            ReimbursementType createReimbursementType = reimbursementTypeService.createReimbursementType(request);
             resp.setContentType("application/json");
             resp.setStatus(200);
-            resp.getWriter().write("<p>New reimbursement has been created successfully!!</p>");
-            System.out.println();
-            resp.getWriter().write(mapper.writeValueAsString(createReimbursement.getReim_id()));
-            resp.getWriter().write(mapper.writeValueAsString(createReimbursement.getType_id()));
+            resp.getWriter().write("<h1>New reimbursement type has been added successfully!! </h1>");
+            resp.getWriter().write(mapper.writeValueAsString(createReimbursementType.getType_id())); // return type
+            resp.getWriter().write(mapper.writeValueAsString(createReimbursementType.getType_id())); // return type id
 
 
         } catch (InvalidSQLException e) {
-            resp.getWriter().write("ReimbursementServlet: Unable to insert reimbursementType data!!");
+            resp.getWriter().write("Unable to insert reimbursement types data!!");
             resp.setStatus(404);
             resp.getWriter().write(mapper.writeValueAsString(e.getMessage()));
         } catch (ResourceConflictException e) {
-            resp.getWriter().write("Reimbursement route doesn't exist!");
+            resp.getWriter().write("This reimbursement types doesn't exist!");
             resp.setStatus(409);
         }
+
 
     }
 
