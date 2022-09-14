@@ -25,3 +25,27 @@ DELETE USER ROLE
 GET USER ROLE BY ID
 
 - GET: http://localhost:8080/northern/users/roles
+
+
+
+### REIMBURSEMENT STATUS ROUTES
+
+ADD NEW REIMBURSEMENT STATUS
+
+- POST: http://localhost:8080/northern/types/status
+
+
+GET ALL REIMBURSEMENTS
+
+- GET: http://localhost:8080/northern/types/status
+
+
+
+
+
+
+
+
+
+
+
