@@ -28,6 +28,27 @@ GET USER ROLE BY ID
 
 
 
+### REIMBURSEMENT TYPES ROUTE
+ 
+ADD NEW REIMBURSEMENT TYPE
+
+- POST: http://localhost:8080/northern/types
+
+GET LIST OF REIMBURSEMENT TYPES 
+- GET: http://localhost:8080/northern/types
+
+
+
+DELETE REIMBURSEMENT TYPE BY ID
+
+- DELETE: http://localhost:8080/northern/types
+
+
+UPDATE REIMBURSEMENT TYPE
+- UPDATE: http://localhost:8080/northern/types
+
+
+
 ### REIMBURSEMENT STATUS ROUTES
 
 ADD NEW REIMBURSEMENT STATUS
