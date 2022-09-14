@@ -1,11 +1,9 @@
 package com.revature.northern.daos;
 
 import com.revature.northern.models.ReimbursementType;
-import com.revature.northern.models.UserRole;
 import com.revature.northern.utils.custom_exceptions.InvalidSQLException;
 import com.revature.northern.utils.database.ConnectionFactory;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +19,6 @@ public class ReimbursementTypeDAO implements CrudDAO<ReimbursementType> {
                     con.prepareStatement("INSERT INTO ers_reimbursement_types (type_id, type) values (?, ?)");
             ps.setString(1, obj.getType_id());
             ps.setString(2, obj.getType());
-
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -31,7 +28,16 @@ public class ReimbursementTypeDAO implements CrudDAO<ReimbursementType> {
 
     @Override
     public void update(ReimbursementType obj) {
-
+        try (Connection con = ConnectionFactory.getInstance().getConnection()) {
+            PreparedStatement ps =
+                    con.prepareStatement("UPDATE ers_reimbursement_types SET type = ? WHERE type_id = ? ");
+            ps.setString(1, obj.getType());
+            ps.setString(2, obj.getType_id());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new InvalidSQLException("An error occurred while trying to update Reimbursement Type!" + e.getMessage());
+        }
     }
 
     @Override

@@ -58,12 +58,26 @@ public class ReimbursementTypeServlet extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPut(req, resp);
+        try {
+            ReimbursementType request = mapper.readValue(req.getInputStream(), ReimbursementType.class);
+            reimbursementTypeService.updateReimbursementType(request);
+            ;
+            resp.setContentType("application/json");
+            resp.setStatus(200);
+            resp.getWriter().write("ReimbursementType with type id: " + request.getType_id() + " has been updated successfully!!");
+
+        } catch (InvalidSQLException e) {
+            resp.getWriter().write("Unable to update reimbursement types data!!");
+            resp.setStatus(404);
+            resp.getWriter().write(mapper.writeValueAsString(e.getMessage()));
+        } catch (ResourceConflictException e) {
+            resp.getWriter().write("This reimbursement types doesn't exist!");
+            resp.setStatus(409);
+        }
     }
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        super.doDelete(req, resp);
         try {
             NewRequestReimbursementType request = mapper.readValue(req.getInputStream(), NewRequestReimbursementType.class);
             if (request.getType_id().isEmpty() || request.getType_id() != request.getType_id()) {
@@ -72,7 +86,7 @@ public class ReimbursementTypeServlet extends HttpServlet {
                 reimbursementTypeService.deleteReimbursementType(request.getType_id());
                 resp.setContentType("application/json");
                 resp.setStatus(200);
-                resp.getWriter().write("<h1>Reimbursement type has been DELETED successfully!! </h1>");
+                resp.getWriter().write("ReimbursementType with type id: " + request.getType_id() + " has been deleted successfully!!");
             }
 
         } catch (InvalidSQLException e) {
