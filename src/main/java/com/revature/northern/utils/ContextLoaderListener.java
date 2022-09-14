@@ -21,7 +21,7 @@ public class ContextLoaderListener implements ServletContextListener {
 
         ReimbursementTypeServlet reimbursementTypeServlet = new ReimbursementTypeServlet(mapper, new ReimbursementTypeService(new ReimbursementTypeDAO()));
 
-        ReimbursementStatusServlet reimbursementStatusServlet   = new ReimbursementStatusServlet(mapper, new ReimbursementStatusService(new ReimbursementStatusDAO()))  ;
+        ReimbursementStatusServlet reimbursementStatusServlet = new ReimbursementStatusServlet(mapper, new ReimbursementStatusService(new ReimbursementStatusDAO()));
 
         ReimbursementServlet reimbursementServlet = new ReimbursementServlet(mapper, new ReimbursementService(new ReimbursementDOA()));
         UserRoleServlet userRoleServlet = new UserRoleServlet(mapper, new UserRoleService(new UserRoleDAO())); //UserRoles
@@ -38,7 +38,7 @@ public class ContextLoaderListener implements ServletContextListener {
 
 
         //UserRoles route
-        context.addServlet("UserRoleServlet", userRoleServlet).addMapping("/roles");  //northern/roles
+        context.addServlet("UserRoleServlet", userRoleServlet).addMapping("/users/roles");  //northern/roles
 
         context.addServlet("ReimbursementTypeServlet", reimbursementTypeServlet).addMapping("/types");
 

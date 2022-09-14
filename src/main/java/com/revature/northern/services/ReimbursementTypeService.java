@@ -21,6 +21,7 @@ public class ReimbursementTypeService {
         reimbursementTypeDAO.save(reimbursementType);
         return reimbursementType;
     }
+
     //Get All Reimbursement Types
     public List<ReimbursementType> getAllReimbursementType() {
         return reimbursementTypeDAO.getAll();
@@ -37,11 +38,10 @@ public class ReimbursementTypeService {
     }
 
 
-
     /******* ReimbursementType Validation methods *********/
     public boolean isValidType(String type) {
         if (type.isEmpty()) throw new InvalidUserException("\nType is required!!");
-        if (type.length() < 4) throw new InvalidUserException("\nType must be more than 4 characters!!" );
+        if (type.length() < 4) throw new InvalidUserException("\nType must be more than 4 characters!!");
         return true;
     }
 

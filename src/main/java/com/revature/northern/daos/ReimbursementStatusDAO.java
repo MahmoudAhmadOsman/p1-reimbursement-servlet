@@ -15,8 +15,7 @@ public class ReimbursementStatusDAO implements CrudDAO<ReimbursementStatus> {
     @Override
     public void save(ReimbursementStatus obj) {
         try (Connection con = ConnectionFactory.getInstance().getConnection()) {
-            PreparedStatement ps =
-                    con.prepareStatement("INSERT INTO ers_reimbursement_statuses (status_id, status) values (?, ?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO ers_reimbursement_statuses (status_id, status) values (?, ?)");
             ps.setString(1, obj.getStatus_id());
             ps.setString(2, obj.getStatus());
             ps.executeUpdate();
@@ -50,9 +49,7 @@ public class ReimbursementStatusDAO implements CrudDAO<ReimbursementStatus> {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM ers_reimbursement_statuses");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                ReimbursementStatus ReimbStatusType = new ReimbursementStatus(
-                        rs.getString("status_id"),
-                        rs.getString("status"));
+                ReimbursementStatus ReimbStatusType = new ReimbursementStatus(rs.getString("status_id"), rs.getString("status"));
                 reimbursementStatusList.add(ReimbStatusType);
             }
 
