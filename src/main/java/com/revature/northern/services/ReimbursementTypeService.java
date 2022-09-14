@@ -30,5 +30,12 @@ public class ReimbursementTypeService {
         return reimbursementTypeDAO.getAll();
     }
 
+    //Delete Reimbursement Type
+    public void deleteReimbursementType(String id){
+         reimbursementTypeDAO.delete(id);
+    }
+
+
+
 
 }

@@ -36,6 +36,23 @@ public class ReimbursementTypeDAO implements CrudDAO<ReimbursementType> {
 
     @Override
     public void delete(String id) {
+        try (Connection con = ConnectionFactory.getInstance().getConnection()) {
+            PreparedStatement id_exist = con.prepareStatement("SELECT * FROM ers_reimbursement_types WHERE type_id = ?");
+            id_exist.setString(1, id);
+            ResultSet exists = id_exist.executeQuery();
+            if (exists.next()) {
+                PreparedStatement ps = con.prepareStatement("DELETE FROM ers_reimbursement_types WHERE type_id = ?");
+                ps.setString(1, id);
+                ps.executeUpdate();
+                System.out.println("Reimbursement Type has been deleted successfully!");
+            } else {
+                System.out.println("No Reimbursement Type id found!. Please try again.");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new InvalidSQLException("\nAn error occurred while tyring to delete Reimbursement Type data from the database!!." + e.getMessage());
+        }
 
     }
 

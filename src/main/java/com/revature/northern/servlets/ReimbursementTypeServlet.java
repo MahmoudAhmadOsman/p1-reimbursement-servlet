@@ -63,6 +63,26 @@ public class ReimbursementTypeServlet extends HttpServlet {
 
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
+//        super.doDelete(req, resp);
+        try {
+            NewRequestReimbursementType request = mapper.readValue(req.getInputStream(), NewRequestReimbursementType.class);
+            if (request.getType_id().isEmpty() || request.getType_id() != request.getType_id()) {
+                resp.getWriter().write("<h1>Reimbursement type doesn't exist!! </h1>");
+            } else {
+                reimbursementTypeService.deleteReimbursementType(request.getType_id());
+                resp.setContentType("application/json");
+                resp.setStatus(200);
+                resp.getWriter().write("<h1>Reimbursement type has been DELETED successfully!! </h1>");
+            }
+
+        } catch (InvalidSQLException e) {
+            resp.getWriter().write("Unable to delete reimbursement types data!!");
+            resp.setStatus(404);
+            resp.getWriter().write(mapper.writeValueAsString(e.getMessage()));
+        } catch (ResourceConflictException e) {
+            resp.getWriter().write("This reimbursement types doesn't exist!");
+            resp.setStatus(409);
+        }
+
     }
 }
