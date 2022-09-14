@@ -1,15 +1,8 @@
 package com.revature.northern.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.northern.daos.ReimbursementDOA;
-import com.revature.northern.daos.ReimbursementTypeDAO;
-import com.revature.northern.daos.UserDAO;
-import com.revature.northern.daos.UserRoleDAO;
-import com.revature.northern.models.ReimbursementType;
-import com.revature.northern.services.ReimbursementService;
-import com.revature.northern.services.ReimbursementTypeService;
-import com.revature.northern.services.UserRoleService;
-import com.revature.northern.services.UserService;
+import com.revature.northern.daos.*;
+import com.revature.northern.services.*;
 import com.revature.northern.servlets.*;
 
 import javax.servlet.ServletContext;
@@ -27,6 +20,8 @@ public class ContextLoaderListener implements ServletContextListener {
         UserServlet userServlet = new UserServlet(mapper, new UserService(new UserDAO()));
 
         ReimbursementTypeServlet reimbursementTypeServlet = new ReimbursementTypeServlet(mapper, new ReimbursementTypeService(new ReimbursementTypeDAO()));
+
+        ReimbursementStatusServlet reimbursementStatusServlet   = new ReimbursementStatusServlet(mapper, new ReimbursementStatusService(new ReimbursementStatusDAO()))  ;
 
         ReimbursementServlet reimbursementServlet = new ReimbursementServlet(mapper, new ReimbursementService(new ReimbursementDOA()));
         UserRoleServlet userRoleServlet = new UserRoleServlet(mapper, new UserRoleService(new UserRoleDAO())); //UserRoles
@@ -46,6 +41,10 @@ public class ContextLoaderListener implements ServletContextListener {
         context.addServlet("UserRoleServlet", userRoleServlet).addMapping("/roles");  //northern/roles
 
         context.addServlet("ReimbursementTypeServlet", reimbursementTypeServlet).addMapping("/types");
+
+        //Reimbursement Status
+        context.addServlet("ReimbursementStatusServlet", reimbursementStatusServlet).addMapping("/types/status");
+
         //Reimbursements rout
         context.addServlet("ReimbursementServlet", reimbursementServlet).addMapping("/reimbursements"); //northern/reimbursements
 

@@ -25,10 +25,12 @@ public class ReimbursementTypeService {
     public List<ReimbursementType> getAllReimbursementType() {
         return reimbursementTypeDAO.getAll();
     }
+
     //Delete Reimbursement Type
     public void deleteReimbursementType(String id) {
         reimbursementTypeDAO.delete(id);
     }
+
     //update Reimbursement Type
     public void updateReimbursementType(ReimbursementType id) {
         reimbursementTypeDAO.update(id);
@@ -42,13 +44,6 @@ public class ReimbursementTypeService {
         if (type.length() < 4) throw new InvalidUserException("\nType must be more than 4 characters!!" );
         return true;
     }
-
-
-
-
-
-
-
 
 
 }
