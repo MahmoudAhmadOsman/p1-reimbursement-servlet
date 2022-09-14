@@ -1,12 +1,9 @@
 package com.revature.northern.services;
 
 import com.revature.northern.daos.ReimbursementTypeDAO;
-import junit.framework.TestCase;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 
 public class ReimbursementTypeServiceTest {
