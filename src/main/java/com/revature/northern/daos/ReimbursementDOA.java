@@ -1,12 +1,12 @@
 package com.revature.northern.daos;
+
 import com.revature.northern.models.Reimbursement;
 import com.revature.northern.utils.custom_exceptions.InvalidSQLException;
 import com.revature.northern.utils.database.ConnectionFactory;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+
+import java.sql.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ReimbursementDOA implements CrudDAO<Reimbursement>{
@@ -52,6 +52,24 @@ public class ReimbursementDOA implements CrudDAO<Reimbursement>{
 
     @Override
     public List<Reimbursement> getAll() {
-        return null;
+                List<Reimbursement> reimbursementList = new ArrayList<>();
+
+                try (Connection con = ConnectionFactory.getInstance().getConnection()) {
+                    PreparedStatement ps = con.prepareStatement("SELECT * FROM ers_reimbursements");
+                    ResultSet rs = ps.executeQuery();
+//                    while (rs.next()) {
+//                        Reimbursement ReimbList = new Reimbursement( rs.getString("reim_id"),
+//                                rs.getDouble("amount"),
+//                                rs.getDate("submitted").toLocalDate(),
+//                                rs.getDate("resolved").toLocalDate(),
+//                                rs.getString("description"),
+//                                );
+//                        reimbursementList.add(ReimbList);
+//                    }
+
+                } catch (SQLException e) {
+                    throw new InvalidSQLException("An error occurred while tyring to get Reimbursement from the database.");
+                }
+               return reimbursementList;
     }
 }

@@ -3,9 +3,11 @@ package com.revature.northern.dtos.requests;
 import java.util.Arrays;
 
 public class NewReimbursementRequest {
+    private String reim_id;
     private double amount;
     private String description;
     private byte[] receipt;
+
     private String payment_id;
     private String author_id;
     private String resolver_id;
@@ -15,7 +17,8 @@ public class NewReimbursementRequest {
     public NewReimbursementRequest() {
     }
 
-    public NewReimbursementRequest(double amount, String description, byte[] receipt, String payment_id, String author_id, String resolver_id, String status_id, String type_id) {
+    public NewReimbursementRequest(String reim_id, double amount, String description, byte[] receipt, String payment_id, String author_id, String resolver_id, String status_id, String type_id) {
+        this.reim_id = reim_id;
         this.amount = amount;
         this.description = description;
         this.receipt = receipt;
@@ -24,6 +27,14 @@ public class NewReimbursementRequest {
         this.resolver_id = resolver_id;
         this.status_id = status_id;
         this.type_id = type_id;
+    }
+
+    public String getReim_id() {
+        return reim_id;
+    }
+
+    public void setReim_id(String reim_id) {
+        this.reim_id = reim_id;
     }
 
     public double getAmount() {
@@ -93,7 +104,8 @@ public class NewReimbursementRequest {
     @Override
     public String toString() {
         return "NewReimbursementRequest{" +
-                "amount=" + amount +
+                "reim_id='" + reim_id + '\'' +
+                ", amount=" + amount +
                 ", description='" + description + '\'' +
                 ", receipt=" + Arrays.toString(receipt) +
                 ", payment_id='" + payment_id + '\'' +

@@ -31,7 +31,7 @@ public class ReimbursementServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        super.doPost(req, resp);
+        resp.getWriter().write("<p>Get list of reimbursement method!!</p>");
 
         try {
 
