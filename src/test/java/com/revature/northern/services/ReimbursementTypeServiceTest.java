@@ -10,11 +10,9 @@ public class ReimbursementTypeServiceTest {
     private ReimbursementTypeService sut;
     private final ReimbursementTypeDAO mockReimbursementTypeDAO = mock(ReimbursementTypeDAO.class);
 
-
     @Before
     public void setup() {
         sut = new ReimbursementTypeService(mockReimbursementTypeDAO);
-
     }
 
     @Test
@@ -25,8 +23,5 @@ public class ReimbursementTypeServiceTest {
         boolean flag = sut.isValidType(validType);
         //A3 - Assert
         Assert.assertTrue(flag);
-
     }
-
-
 }

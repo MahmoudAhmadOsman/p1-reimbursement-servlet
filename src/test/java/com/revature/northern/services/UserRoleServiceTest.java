@@ -15,25 +15,18 @@ public class UserRoleServiceTest {
     private UserRoleService sut;
     private final UserRoleDAO mockUserRoleDAO = mock(UserRoleDAO.class);
 
-
     @Before
     public void setup() {
         sut = new UserRoleService(mockUserRoleDAO);
     }
-
-
     @Test
     public void test_isValidRoleId_givenCorrectRoleId() {
-
         //A1- 1. Arrange
         String validRoleId = "993b60a8-0ab7-49ef-975f-01100e27cabc";
-
         //Act
         boolean flag = sut.isValidRole(validRoleId);
-
         //Assert
         Assert.assertTrue(flag);
-
     }
 
     @Test
@@ -42,5 +35,4 @@ public class UserRoleServiceTest {
         boolean flag = sut.isValidRole(validRole);
         Assert.assertTrue(flag);
     }
-
 }
