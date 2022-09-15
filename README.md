@@ -108,4 +108,4 @@ Reimbursements are to be one of the following types:
  
 
 ### Contributors
-- ![Mahmoud Osman](http://mahmoudosman.com/)
+- [www.mahmoudosman.com](http://www.mahmoudosman.com/)
