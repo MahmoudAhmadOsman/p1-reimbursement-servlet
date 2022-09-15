@@ -36,14 +36,13 @@ public class ReimbursementServlet extends HttpServlet {
         try {
 
             NewReimbursementRequest request = mapper.readValue(req.getInputStream(), NewReimbursementRequest.class);
-            Reimbursement createReimbursement = reimbursementService.createReimbursement(request);
+            Reimbursement createdReimbursement = reimbursementService.createReimbursement(request);
 
             resp.setContentType("application/json");
             resp.setStatus(200);
             resp.getWriter().write("<p>New reimbursement has been created successfully!!</p>");
-            System.out.println();
-            resp.getWriter().write(mapper.writeValueAsString(createReimbursement.getReim_id()));
-            resp.getWriter().write(mapper.writeValueAsString(createReimbursement.getType_id()));
+            resp.getWriter().write(mapper.writeValueAsString(createdReimbursement.getReim_id()));
+            resp.getWriter().write(mapper.writeValueAsString(createdReimbursement.getType_id()));
 
 
         } catch (InvalidSQLException e) {

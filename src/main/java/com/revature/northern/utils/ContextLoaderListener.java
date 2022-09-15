@@ -24,9 +24,8 @@ public class ContextLoaderListener implements ServletContextListener {
         ReimbursementStatusServlet reimbursementStatusServlet = new ReimbursementStatusServlet(mapper, new ReimbursementStatusService(new ReimbursementStatusDAO()));
 
         ReimbursementServlet reimbursementServlet = new ReimbursementServlet(mapper, new ReimbursementService(new ReimbursementDOA()));
+
         UserRoleServlet userRoleServlet = new UserRoleServlet(mapper, new UserRoleService(new UserRoleDAO())); //UserRoles
-
-
 
 
         /* Need ServletContext class to map whatever servlet to url path. */

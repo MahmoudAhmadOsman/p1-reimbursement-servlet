@@ -1,21 +1,28 @@
 package com.revature.northern.dtos.requests;
-import java.time.LocalDate;
+
+import java.util.Arrays;
 
 public class NewReimbursementRequest {
     private double amount;
     private String description;
-    private LocalDate submitted;
+    private byte[] receipt;
     private String payment_id;
+    private String author_id;
+    private String resolver_id;
+    private String status_id;
     private String type_id;
 
     public NewReimbursementRequest() {
     }
 
-    public NewReimbursementRequest(double amount, String description, LocalDate submitted, String payment_id, String type_id) {
+    public NewReimbursementRequest(double amount, String description, byte[] receipt, String payment_id, String author_id, String resolver_id, String status_id, String type_id) {
         this.amount = amount;
         this.description = description;
-        this.submitted = submitted;
+        this.receipt = receipt;
         this.payment_id = payment_id;
+        this.author_id = author_id;
+        this.resolver_id = resolver_id;
+        this.status_id = status_id;
         this.type_id = type_id;
     }
 
@@ -35,12 +42,12 @@ public class NewReimbursementRequest {
         this.description = description;
     }
 
-    public LocalDate getSubmitted() {
-        return submitted;
+    public byte[] getReceipt() {
+        return receipt;
     }
 
-    public void setSubmitted(LocalDate submitted) {
-        this.submitted = submitted;
+    public void setReceipt(byte[] receipt) {
+        this.receipt = receipt;
     }
 
     public String getPayment_id() {
@@ -49,6 +56,30 @@ public class NewReimbursementRequest {
 
     public void setPayment_id(String payment_id) {
         this.payment_id = payment_id;
+    }
+
+    public String getAuthor_id() {
+        return author_id;
+    }
+
+    public void setAuthor_id(String author_id) {
+        this.author_id = author_id;
+    }
+
+    public String getResolver_id() {
+        return resolver_id;
+    }
+
+    public void setResolver_id(String resolver_id) {
+        this.resolver_id = resolver_id;
+    }
+
+    public String getStatus_id() {
+        return status_id;
+    }
+
+    public void setStatus_id(String status_id) {
+        this.status_id = status_id;
     }
 
     public String getType_id() {
@@ -64,8 +95,11 @@ public class NewReimbursementRequest {
         return "NewReimbursementRequest{" +
                 "amount=" + amount +
                 ", description='" + description + '\'' +
-                ", submitted=" + submitted +
+                ", receipt=" + Arrays.toString(receipt) +
                 ", payment_id='" + payment_id + '\'' +
+                ", author_id='" + author_id + '\'' +
+                ", resolver_id='" + resolver_id + '\'' +
+                ", status_id='" + status_id + '\'' +
                 ", type_id='" + type_id + '\'' +
                 '}';
     }

@@ -1,13 +1,13 @@
-# Java Enterprise Foundations Project Requirements
+## Java Enterprise - Reimbursement System
 
-## Project Description
+### Project Description
 
-For the foundations module of your training you are tasked with building an API that will support a new internal expense reimbursement system. This system will manage the process of reimbursing employees for expenses incurred while on company time. All registered employees in the company can login and submit requests for reimbursement and view their past tickets and pending requests. Finance managers can log in and view all reimbursement requests and past history for all employees in the company. Finance managers are authorized to approve and deny requests for expense reimbursement.
+This system will manage the process of reimbursing employees for expenses incurred while on company time. All registered employees in the company can login and submit requests for reimbursement and view their past tickets and pending requests. Finance managers can log in and view all reimbursement requests and past history for all employees in the company. Finance managers are authorized to approve and deny requests for expense reimbursement.
 
 ### Project Design Specifications and Documents
 
 ##### Relational Data Model
-![Relational Model](https://github.com/220207-java-enterprise/assignments/blob/main/foundations-project/imgs/ERS%20Relational%20Model.png)
+![Relational Model](https://github.com/MahmoudAhmadOsman/reimbursement-system/blob/main/src/main/resources/design/ERS%20Relational%20Model.png)
 
 ##### Reimbursement Types
 Reimbursements are to be one of the following types:
@@ -28,13 +28,17 @@ Reimbursements are to be one of the following types:
 - PostGreSQL (running on Docker)
 
 **Application Tier**
-- Java 8
+- Written in Java 8.
+- Intellij
+- Amazon AWS
 - Apache Maven
 - JDBC
 - Java EE Servlets
 - JSON Web Tokens
 - JUnit
 - Mockito
+- Test on Postman
+
 
 ### Functional Requirements
 
@@ -99,47 +103,9 @@ Reimbursements are to be one of the following types:
 | The system's data schema and component design is documented and diagrammed                        | Non-Functional            | 5     |
 | The system keeps detailed logs on info, error, and fatal events that occur                        | Non-Functional            | 5     |
 
-### Soft Skill Scoring Rubric
+ 
 
-| Metric                                                                                            | Value |
-|---------------------------------------------------------------------------------------------------|-------|
-| The associate is able to speak clearly and articulately                                           | 5     |
-| The associate adheres to the presentation time limit                                              | 5     |
-| The associate is able to correctly use technical terminology when discussing system functionality | 5     |
-| The associate's demonstration is easy to follow and well-prepared                                 | 5     |
+ 
 
-### Developer Scoring Rubric
-
-| Metric                                                                                            | Value |
-|---------------------------------------------------------------------------------------------------|-------|
-| The application's codebase adheres to best practice naming conventions                            | 33    |
-| The application's codebase follows some kind of organizational structure                          | 33    |
-| The commit history of the project is detailed with concise and descriptive commits                | 34    |
-
-## Milestones
-
-#### 25Aug2022
-- Project requirements delivered
-
-#### 29Aug2022
-- Remote repository is created and is being kept up to date
-- Core model classes are created
-- Registration/Authentication/User operations in progress
-
-#### 1Sept2022
-- Local DB instance running
-- App to DB connection made
-- Specified tables created with proper constraints
-- Registration/Authentication/User operations complete
-- Reimbursement operations in progress
-- Basic persistence layer operations in progress
-- Testing of business logic is in progress
-
-#### 05Sept2022
-- Registration/Authentication web endpoints are accessible and functional
-- Reimbursement web endpoints are accessible and functional
-- User passwords are encrypted when persisted to the DB
-- Testing of business logic is in progress
-
-#### 07Sept2022
-- Project Presentations
+### Contributors
+- Mahmoud Osman
