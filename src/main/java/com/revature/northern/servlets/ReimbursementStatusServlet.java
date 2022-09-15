@@ -35,12 +35,12 @@ public class ReimbursementStatusServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             NewReimbursementStatus request = mapper.readValue(req.getInputStream(), NewReimbursementStatus.class);
-            ReimbursementStatus createReimbursementStatus = reimbursementStatusService.createReimbursementStatus(request);
+            ReimbursementStatus createdReimbursementStatus = reimbursementStatusService.createReimbursementStatus(request);
             resp.setContentType("application/json");
             resp.setStatus(200);
             resp.getWriter().write("<h1>New Reimbursement Status has been added successfully!! </h1>");
-            resp.getWriter().write(mapper.writeValueAsString(createReimbursementStatus.getStatus_id())); // return status id
-            resp.getWriter().write(mapper.writeValueAsString(createReimbursementStatus.getStatus())); // return status
+            resp.getWriter().write(mapper.writeValueAsString(createdReimbursementStatus.getStatus_id())); // return status id
+            resp.getWriter().write(mapper.writeValueAsString(createdReimbursementStatus.getStatus())); // return status
 
 
         } catch (InvalidSQLException e) {

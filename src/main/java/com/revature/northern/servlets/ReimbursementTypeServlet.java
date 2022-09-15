@@ -36,12 +36,12 @@ public class ReimbursementTypeServlet extends HttpServlet {
 
         try {
             NewRequestReimbursementType request = mapper.readValue(req.getInputStream(), NewRequestReimbursementType.class);
-            ReimbursementType createReimbursementType = reimbursementTypeService.createReimbursementType(request);
+            ReimbursementType createdReimbursementType = reimbursementTypeService.createReimbursementType(request);
             resp.setContentType("application/json");
             resp.setStatus(200);
             resp.getWriter().write("<h1>New reimbursement type has been added successfully!! </h1>");
-            resp.getWriter().write(mapper.writeValueAsString(createReimbursementType.getType_id())); // return type
-            resp.getWriter().write(mapper.writeValueAsString(createReimbursementType.getType_id())); // return type id
+            resp.getWriter().write(mapper.writeValueAsString(createdReimbursementType.getType_id())); // return type
+            resp.getWriter().write(mapper.writeValueAsString(createdReimbursementType.getType_id())); // return type id
 
 
         } catch (InvalidSQLException e) {

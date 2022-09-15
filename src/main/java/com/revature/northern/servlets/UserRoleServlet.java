@@ -3,7 +3,6 @@ package com.revature.northern.servlets;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.northern.dtos.requests.NewUserRoleRequest;
 import com.revature.northern.models.UserRole;
-import com.revature.northern.services.TokenService;
 import com.revature.northern.services.UserRoleService;
 import com.revature.northern.utils.custom_exceptions.InvalidSQLException;
 import com.revature.northern.utils.custom_exceptions.ResourceConflictException;
@@ -45,12 +44,12 @@ public class UserRoleServlet extends HttpServlet {
 
         try {
             NewUserRoleRequest request = mapper.readValue(req.getInputStream(), NewUserRoleRequest.class);
-            UserRole createUserRole = userRoleService.saveUserRole(request);
+            UserRole createdUserRole = userRoleService.saveUserRole(request);
             resp.setContentType("application/json");
             resp.setStatus(200);
             resp.getWriter().write("<p>New UserRole has been created successfully!! </p>");
-            resp.getWriter().write(mapper.writeValueAsString(createUserRole.getRole_id())); // return back the UserRole id
-            resp.getWriter().write(mapper.writeValueAsString(createUserRole.getRole())); // return back UserRole role
+            resp.getWriter().write(mapper.writeValueAsString(createdUserRole.getRole_id())); // return back the UserRole id
+            resp.getWriter().write(mapper.writeValueAsString(createdUserRole.getRole())); // return back UserRole role
 
 
         } catch (InvalidSQLException e) {
