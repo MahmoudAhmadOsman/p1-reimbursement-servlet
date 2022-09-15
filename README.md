@@ -37,7 +37,7 @@ Reimbursements are to be one of the following types:
 - JSON Web Tokens
 - JUnit
 - Mockito
-- Test on Postman
+- Tested on Postman
 
 
 ### Functional Requirements
@@ -68,7 +68,7 @@ Reimbursements are to be one of the following types:
 - The system's data schema and component design is documented and diagrammed
 - The system keeps detailed logs on info, error, and fatal events that occur
 
-### Suggested Bonus Features
+### Other Features
 - Authenticated employees are able to upload an receipt image along with their reimbursement request
 - The system notifies the user of changes to their account registration status by email
 - The system notifies the user of changes to their reimbursement request status by email
@@ -76,9 +76,9 @@ Reimbursements are to be one of the following types:
 - Run your application within a Docker container
 - Automate builds using GitHub Actions
 
-## Scoring and Milestones
 
-### Technical Scoring Rubric
+
+### Technical Scoring Achievements
 
 | Requirement                                                                                       | Functional/Non-Functional | Value |
 |---------------------------------------------------------------------------------------------------|---------------------------|-------|
