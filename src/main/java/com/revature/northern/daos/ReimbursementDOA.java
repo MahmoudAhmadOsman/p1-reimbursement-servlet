@@ -9,9 +9,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReimbursementDOA implements CrudDAO<Reimbursement>{
+
+public class ReimbursementDOA implements CrudDAO<Reimbursement> {
     @Override
-    public void save(Reimbursement obj)  {
+    public void save(Reimbursement obj) {
         System.out.println("===========" + obj + "===========");
         try (Connection con = ConnectionFactory.getInstance().getConnection()) {
             PreparedStatement
@@ -52,24 +53,37 @@ public class ReimbursementDOA implements CrudDAO<Reimbursement>{
 
     @Override
     public List<Reimbursement> getAll() {
-                List<Reimbursement> reimbursementList = new ArrayList<>();
 
-                try (Connection con = ConnectionFactory.getInstance().getConnection()) {
-                    PreparedStatement ps = con.prepareStatement("SELECT * FROM ers_reimbursements");
-                    ResultSet rs = ps.executeQuery();
-//                    while (rs.next()) {
-//                        Reimbursement ReimbList = new Reimbursement( rs.getString("reim_id"),
-//                                rs.getDouble("amount"),
+        List<Reimbursement> reimbursementList = new ArrayList<>();
+        try (Connection con = ConnectionFactory.getInstance().getConnection()) {
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM ers_reimbursements");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Reimbursement reimList = new Reimbursement(
+                        rs.getString("reim_id"),
+                        rs.getDouble("amount"),
 //                                rs.getDate("submitted").toLocalDate(),
-//                                rs.getDate("resolved").toLocalDate(),
-//                                rs.getString("description"),
-//                                );
-//                        reimbursementList.add(ReimbList);
-//                    }
+                        rs.getTimestamp("submitted"),
+                        //rs.getTimestamp(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(rs.getTimestamp("submitted"))),
 
-                } catch (SQLException e) {
-                    throw new InvalidSQLException("An error occurred while tyring to get Reimbursement from the database.");
-                }
-               return reimbursementList;
+                        rs.getTimestamp("resolved"),
+                        //rs.getDate(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(rs.getTimestamp("resolved"))).toLocalDate(),
+                        rs.getString("description"),
+                        rs.getBytes("receipt"),
+                        rs.getString("payment_id"),
+                        rs.getString("author_id"),
+                        rs.getString("resolver_id"),
+                        rs.getString("status_id"),
+                        rs.getString("type_id")
+                );
+                reimbursementList.add(reimList);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new InvalidSQLException("An error occurred while tyring to get Reimbursement from the database!!" + e.getMessage());
+        }
+        return reimbursementList;
     }
 }

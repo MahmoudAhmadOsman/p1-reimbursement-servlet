@@ -61,7 +61,6 @@ public class ReimbursementTypeServlet extends HttpServlet {
         try {
             ReimbursementType request = mapper.readValue(req.getInputStream(), ReimbursementType.class);
             reimbursementTypeService.updateReimbursementType(request);
-            ;
             resp.setContentType("application/json");
             resp.setStatus(200);
             resp.getWriter().write("ReimbursementType with type id: " + request.getType_id() + " has been updated successfully!!");

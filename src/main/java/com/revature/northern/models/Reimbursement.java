@@ -1,13 +1,13 @@
 package com.revature.northern.models;
 
-import java.time.LocalDate;
+import java.sql.Timestamp;
 import java.util.Arrays;
 
 public class Reimbursement {
     private String reim_id;
     private double amount;
-    private LocalDate submitted;
-    private LocalDate resolved;
+    private Timestamp submitted;
+    private Timestamp resolved;
     private String description;
     private byte[] receipt;
 
@@ -20,7 +20,7 @@ public class Reimbursement {
     public Reimbursement() {
     }
 
-    public Reimbursement(String reim_id, double amount, LocalDate submitted, LocalDate resolved, String description, byte[] receipt, String payment_id, String author_id, String resolver_id, String status_id, String type_id) {
+    public Reimbursement(String reim_id, double amount, Timestamp submitted, Timestamp resolved, String description, byte[] receipt, String payment_id, String author_id, String resolver_id, String status_id, String type_id) {
         this.reim_id = reim_id;
         this.amount = amount;
         this.submitted = submitted;
@@ -50,19 +50,19 @@ public class Reimbursement {
         this.amount = amount;
     }
 
-    public LocalDate getSubmitted() {
+    public Timestamp getSubmitted() {
         return submitted;
     }
 
-    public void setSubmitted(LocalDate submitted) {
+    public void setSubmitted(Timestamp submitted) {
         this.submitted = submitted;
     }
 
-    public LocalDate getResolved() {
+    public Timestamp getResolved() {
         return resolved;
     }
 
-    public void setResolved(LocalDate resolved) {
+    public void setResolved(Timestamp resolved) {
         this.resolved = resolved;
     }
 
