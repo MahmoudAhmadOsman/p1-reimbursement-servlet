@@ -62,12 +62,9 @@ public class ReimbursementDOA implements CrudDAO<Reimbursement> {
                 Reimbursement reimList = new Reimbursement(
                         rs.getString("reim_id"),
                         rs.getDouble("amount"),
-//                                rs.getDate("submitted").toLocalDate(),
+                    // rs.getDate("submitted").toLocalDate(),
                         rs.getTimestamp("submitted"),
-                        //rs.getTimestamp(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(rs.getTimestamp("submitted"))),
-
                         rs.getTimestamp("resolved"),
-                        //rs.getDate(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(rs.getTimestamp("resolved"))).toLocalDate(),
                         rs.getString("description"),
                         rs.getBytes("receipt"),
                         rs.getString("payment_id"),
@@ -78,7 +75,6 @@ public class ReimbursementDOA implements CrudDAO<Reimbursement> {
                 );
                 reimbursementList.add(reimList);
             }
-
 
         } catch (SQLException e) {
             e.printStackTrace();
