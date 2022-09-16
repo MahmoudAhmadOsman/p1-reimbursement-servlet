@@ -121,7 +121,7 @@ ________________________________________________________________________________
 
 ### USERS ROUTES
 
-[#1589F0] SIGNUP
+ SIGNUP
  - POST: http://localhost:8080/northern/users/signup
 
 ```bash
