@@ -115,13 +115,13 @@ ________________________________________________________________________________
 
 
 
-![#1589F0] # POSTMAN TESTING ROUTES
+! # POSTMAN TESTING ROUTES
 
 
 
 ### USERS ROUTES
 
-SIGNUP
+[#1589F0] SIGNUP
  - POST: http://localhost:8080/northern/users/signup
 
 ```bash
