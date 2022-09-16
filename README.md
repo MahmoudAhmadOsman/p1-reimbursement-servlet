@@ -113,10 +113,7 @@ ________________________________________________________________________________
 
 
 
-
-
-! # POSTMAN TESTING ROUTES
-
+# POSTMAN TESTING ROUTES
 
 
 ### USERS ROUTES
