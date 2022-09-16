@@ -37,7 +37,7 @@ Reimbursements are to be one of the following types:
 - JSON Web Tokens
 - JUnit
 - Mockito
-- Tested on Postman
+-  POSTMAN
 
 
 ### Functional Requirements
