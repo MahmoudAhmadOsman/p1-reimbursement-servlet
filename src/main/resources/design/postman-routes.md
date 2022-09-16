@@ -1,12 +1,12 @@
 # POSTMAN TESTING ROUTES
+___________________________________ 
 
----
+
 
 ### USERS ROUTES
 
 SIGNUP
-
-- POST: http://localhost:8080/northern/users/signup
+ - POST: http://localhost:8080/northern/users/signup
 
 ```bash
 
@@ -17,13 +17,17 @@ SIGNUP
     "email": "osman8080@gmail.com",
     "given_name": "Mahmoud",
     "surname" : "Osman"
-}
 
+    
+}
+ 
 ```
 
-GET ALL USERS
+  GET ALL USERS
+ - GET: http://localhost:8080/northern/users
 
-- GET: http://localhost:8080/northern/users
+
+
 
 ### USER ROLES ROUTE
 
@@ -31,40 +35,36 @@ ADD NEW USER ROLE
 
 - POST: http://localhost:8080/northern/users/roles
 
+
 ```bash
 
  {
     "role_id": "305",
     "role": "MARKETING"
 }
-
+ 
 ```
+
 
 GET ALL USERS ROLES
 
-- GET: http://localhost:8080/northern/users/roles
+ - GET: http://localhost:8080/northern/users/roles
 
-DELETE USER ROLE
-
-- DELETE: http://localhost:8080/northern/users/roles
+DELETE USER ROLE 
+- DELETE:  http://localhost:8080/northern/users/roles
 
 GET USER ROLE BY ID
 
 - GET: http://localhost:8080/northern/users/roles
 
-```bash
 
-{
-    "role_id": "521326d7-8f41-41a8-adb0-4de278403683"
-}
-
-```
 
 ### REIMBURSEMENT TYPES ROUTE
-
+ 
 ADD NEW REIMBURSEMENT TYPE
 
 - POST: http://localhost:8080/northern/types
+
 
 ```bash
 
@@ -76,23 +76,21 @@ ADD NEW REIMBURSEMENT TYPE
 
 ```
 
-GET LIST OF REIMBURSEMENT TYPES
 
+GET LIST OF REIMBURSEMENT TYPES 
 - GET: http://localhost:8080/northern/types
+
+
 
 DELETE REIMBURSEMENT TYPE BY ID
 
 - DELETE: http://localhost:8080/northern/types
 
-```bash
-{
-        "type_id": "100"
-}
-```
 
 UPDATE REIMBURSEMENT TYPE
-
 - UPDATE: http://localhost:8080/northern/types
+
+
 
 ### REIMBURSEMENT STATUS ROUTES
 
@@ -117,6 +115,19 @@ ADD NEW REIMBURSEMENT STATUS
 
 ```
 
+
+
 GET ALL REIMBURSEMENTS
 
 - GET: http://localhost:8080/northern/types/status
+
+
+
+
+
+
+
+
+
+
+
