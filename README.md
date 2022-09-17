@@ -148,7 +148,7 @@ ADD NEW USER ROLE
 
  {
     "role_id": "305",
-    "role": "MARKETING"
+    "role": "ADMIN"
 }
  
 ```
@@ -210,7 +210,7 @@ ADD NEW REIMBURSEMENT STATUS
 
 {
 "amount": "80.65",
-"description": "CELLPHONE  PAYMENT",
+"description": "CREDIT CARD PAYMENT",
 "receipt": "PAID",
 "payment_id":"400",
 "author_id": "6652d73b-c01a-4213-82e1-b1ac579e3682",
