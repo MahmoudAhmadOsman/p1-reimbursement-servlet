@@ -11,6 +11,7 @@ public class User {
     private boolean is_active;
     private String role_id;
 
+
     public User() {
     }
 

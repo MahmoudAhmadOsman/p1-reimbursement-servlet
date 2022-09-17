@@ -17,7 +17,10 @@ public class ContextLoaderListener implements ServletContextListener {
 
         /* Dependency Injection */
         TestServlet testServlet = new TestServlet();
-        UserServlet userServlet = new UserServlet(mapper, new UserService(new UserDAO()));
+//        UserServlet userServlet = new UserServlet(mapper, new UserService(new UserDAO()));
+
+        UserServlet userServlet = new UserServlet(mapper, new TokenService(new JwtConfig()), new UserService(new UserDAO())); // with TokenService token
+        AuthServlet authServlet = new AuthServlet(mapper, new TokenService(new JwtConfig()), new UserService(new UserDAO())); // with AuthServlet
 
         ReimbursementTypeServlet reimbursementTypeServlet = new ReimbursementTypeServlet(mapper, new ReimbursementTypeService(new ReimbursementTypeDAO()));
 
@@ -32,8 +35,8 @@ public class ContextLoaderListener implements ServletContextListener {
         ServletContext context = sce.getServletContext();
         context.addServlet("TestServlet", testServlet).addMapping("/test");
 //         context.addServlet("UserServlet", userServlet).addMapping("/users/signup");
-        //context.addServlet("UserServlet", userServlet).addMapping("/users/auth"); //  user login
         context.addServlet("UserServlet", userServlet).addMapping("/users/*"); // all users
+        //context.addServlet("UserServlet", userServlet).addMapping("/users/auth"); //  user login
 
 
         //UserRoles route

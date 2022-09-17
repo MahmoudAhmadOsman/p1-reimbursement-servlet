@@ -2,8 +2,9 @@ package com.revature.northern.servlets;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.northern.dtos.requests.NewUserRequest;
-
+import com.revature.northern.dtos.responses.Principal;
 import com.revature.northern.models.User;
+import com.revature.northern.services.TokenService;
 import com.revature.northern.services.UserService;
 import com.revature.northern.utils.custom_exceptions.InvalidRequestException;
 import com.revature.northern.utils.custom_exceptions.ResourceConflictException;
@@ -18,16 +19,20 @@ import java.util.List;
 public class UserServlet extends HttpServlet {
     //1. inject ObjectMapper class & UserService class
     private final ObjectMapper mapper;
+    private final TokenService tokenService;
     private final UserService userService;
 
-    public UserServlet(ObjectMapper mapper, UserService userService) {
+    public UserServlet(ObjectMapper mapper, TokenService tokenService, UserService userService) {
         this.mapper = mapper;
+        this.tokenService = tokenService;
         this.userService = userService;
     }
 
+
+    //Every user can register
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        System.out.println("inside doPost");
+//        System.out.println("User POST method!!");
         try {
             NewUserRequest request = mapper.readValue(req.getInputStream(), NewUserRequest.class);
             User createdUser = userService.register(request);
@@ -37,7 +42,6 @@ public class UserServlet extends HttpServlet {
 
         } catch (InvalidRequestException e) {
             resp.setStatus(404); //BAD REQUEST
-//            resp.getWriter().write("Unable to insert data!!");
             resp.getWriter().write(mapper.writeValueAsString(e.getMessage()));
             resp.getWriter().write(mapper.writeValueAsString(e.getMessage()));
         } catch (ResourceConflictException e) {
@@ -47,14 +51,51 @@ public class UserServlet extends HttpServlet {
     }
 
 
-    //Get list of all users
+    //Only ADMIN & PRINCIPAL can view the list
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        resp.getWriter().write("<h1>UserServlet doGet method! </h1>");
-        List<User> userLsit = userService.getAllUsers();
-        resp.setContentType("application/json");
-        resp.getWriter().write(mapper.writeValueAsString(userLsit));
+
+        String token = req.getHeader("Authorization");
+        Principal principal = tokenService.extractRequesterDetails(token);
+
+        try {
+            if (principal.getRole().equals("ADMIN") || principal.getRole().equals("PRINCIPAL")) {
+
+                String username = req.getParameter("username");
+                resp.setContentType("application/json");
+
+                if (username != null) {
+                    resp.getWriter().write(mapper.writeValueAsString(userService.getUserByUsername(username)));
+
+                } else {
+                    List<User> userLsit = userService.getAllUsers();
+                    resp.getWriter().write(mapper.writeValueAsString(userLsit));
+                }
+            } else {
+                resp.setStatus(403); // FORBIDDEN REQUEST
+            }
+
+        } catch (NullPointerException e) {
+            resp.setStatus(401); // UNAUTHORIZED REQUEST
+        } catch (InvalidRequestException e) {
+            resp.setStatus(404);
+        }
+
+
     }
 
 
+    // PRINCIPAL can view & update
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPut(req, resp);
+    }
+
+
+
+    //Only ADMIN can delete
+    @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doDelete(req, resp);
+    }
 }

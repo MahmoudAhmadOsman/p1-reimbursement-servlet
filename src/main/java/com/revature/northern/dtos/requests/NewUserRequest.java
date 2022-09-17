@@ -4,13 +4,13 @@ package com.revature.northern.dtos.requests;
 //Then validated in  UserService to check if  credentials are valid
 public class NewUserRequest {
     //Partial registration - no need for the entire User model
-
     private String username;
     private String email;
     private String password1;
     private String password2;
     private String given_name;
     private String surname;
+
 
 /* use this NewUserRequest model-- when registering new user in POSTMAN and use these field in UserDAO and UserService classes*/
 

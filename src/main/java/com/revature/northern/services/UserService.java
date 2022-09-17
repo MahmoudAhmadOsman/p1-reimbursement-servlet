@@ -7,14 +7,11 @@ import com.revature.northern.dtos.responses.Principal;
 import com.revature.northern.models.User;
 import com.revature.northern.utils.custom_exceptions.AuthenticationException;
 import com.revature.northern.utils.custom_exceptions.InvalidRequestException;
-import com.revature.northern.utils.custom_exceptions.InvalidUserException;
 import com.revature.northern.utils.custom_exceptions.ResourceConflictException;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class UserService {
 
@@ -33,7 +30,7 @@ public class UserService {
     //Similar to UserService model validation concept, but this time is Servlet validation
     public User register(NewUserRequest request) {
         User user = null;
-        System.out.println("inside register");
+//        System.out.println("inside register");
         if (isValidUsername(request.getUsername())) {
 
             if (!isDuplicateUsername(request.getUsername())) {
@@ -58,14 +55,13 @@ public class UserService {
     }
 
     //Login now becomes Principal
-
+    //Testing login password encryption - commented on 9/7
 //    public Principal login(LoginRequest request) {
 //        User user = userDAO.getUserByUsernameAndPassword(request.getUsername(), request.getPassword());
 //        if (user == null) throw new AuthenticationException("\nIncorrect username or password!!");
 //        return new Principal(user.getUser_id(), user.getUsername(), user.getRole_id());
 //    }
 
-    //Testing login password encryption - commented on 9/7
     public Principal login(LoginRequest request) {
         User user = userDAO.getUserByUsernameAndPassword(request.getUsername(), request.getPassword());
         if (user == null) throw new AuthenticationException("\nIncorrect username or password!!");

@@ -17,11 +17,10 @@ public class UserDAO implements CrudDAO<User> {
     @Override
     public void save(User obj) {
 
-        System.out.println("===========================" + obj + "================================================");
+        System.out.println("================" + obj + "================");
 
         try (Connection con = ConnectionFactory.getInstance().getConnection()) {
-            PreparedStatement
-                    ps = con.prepareStatement("insert into users (user_id, username, password, email, given_name, surname, is_active, role_id) values (?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO users (user_id, username, password, email, given_name, surname, is_active, role_id) values (?, ?, ?, ?, ?, ?, ?, ?)");
             ps.setString(1, obj.getUser_id());
             ps.setString(2, obj.getUsername());
             ps.setString(3, obj.getPassword());
@@ -32,12 +31,9 @@ public class UserDAO implements CrudDAO<User> {
             ps.setString(8, "001");
             ps.executeUpdate();
 
-
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Inside UserDAO.save method - error");
-            e.printStackTrace();
-            throw new InvalidSQLException("An error occurred when tyring to save to the database.");
+            throw new InvalidSQLException("An error occurred when tyring to save to the database!!" + e.getMessage());
         }
 
     }
@@ -118,8 +114,8 @@ public class UserDAO implements CrudDAO<User> {
             if (rs.next()) return rs.getString("username");
 
         } catch (SQLException e) {
-//            e.printStackTrace();
-            throw new InvalidSQLException("An error occurred while tyring to save user to the database!!");
+            e.printStackTrace();
+            throw new InvalidSQLException("An error occurred while tyring to save user to the database!!" + e.getMessage());
 
         }
 
@@ -129,23 +125,29 @@ public class UserDAO implements CrudDAO<User> {
 
     //Check duplicate username
     public User getUserByUsernameAndPassword(String username, String password) {
+//        User user = null;
         try (Connection con = ConnectionFactory.getInstance().getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM users WHERE username = ? AND password = ?");
             ps.setString(1, username);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
 
-            //commented on 8/30
-//            if (rs.next())
-//                return new User(rs.getString("username"),
-//                        rs.getString("password"));
-
+            if (rs.next()) {
+                rs.getString("user_id");
+                rs.getString("username");
+                rs.getString("email");
+                rs.getString("given_name");
+                rs.getString("surname");
+                rs.getString("is_active");
+                rs.getString("role_id");
+//                return user;
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
-            throw new InvalidSQLException("An error occurred when tyring to get username and password!!.");
+            throw new InvalidSQLException("An error occurred while tyring to query user info from the database!!");
         }
 
         return null;
+
     }
 
 
@@ -156,14 +158,13 @@ public class UserDAO implements CrudDAO<User> {
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
 
-//            if (rs.next())
-//                return new User(rs.getString("user_id"),
-//                        rs.getString("username")
-//                );
-//            }
+            if (rs.next()) {
+                rs.getString("username");
+            }
 
         } catch (SQLException e) {
-            throw new InvalidSQLException("An error occurred when tyring to save to the database.");
+            e.printStackTrace();
+            throw new InvalidSQLException("An error occurred while tyring to query user from the database!!" + e.getMessage());
         }
 
         return null;
