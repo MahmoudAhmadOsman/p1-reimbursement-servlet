@@ -200,9 +200,9 @@ UPDATE REIMBURSEMENT TYPE
 
 
 
-### REIMBURSEMENT STATUS ROUTES
+### REIMBURSEMENT  ROUTES
 
-ADD NEW REIMBURSEMENT STATUS
+ADD NEW REIMBURSEMENT 
 
 - POST: http://localhost:8080/northern/types/status
 
@@ -225,9 +225,26 @@ ADD NEW REIMBURSEMENT STATUS
 
 
 
+ ### REIMBURSEMENTS STATUS ROUTES
+
+
+ ADD NEW REIMBURSEMENTS STATUS 
+
+- POST: http://localhost:8080/northern/types/status
+
+```bash
+{
+        "status_id": "106",
+        "status": "APPROVED"
+}
+
+```
+
+
 GET ALL REIMBURSEMENTS STATUS 
 
 - GET: http://localhost:8080/northern/types/status
+
 
 
  
