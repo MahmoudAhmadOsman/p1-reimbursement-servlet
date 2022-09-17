@@ -6,15 +6,10 @@ This system will manage the process of reimbursing employees for expenses incurr
 
 ### Project Design Specifications and Documents
 
+
 ##### Relational Data Model
 ![Relational Model](https://github.com/MahmoudAhmadOsman/reimbursement-system/blob/main/src/main/resources/design/ERS%20Relational%20Model.png)
 
-##### Reimbursement Types
-Reimbursements are to be one of the following types:
-- LODGING
-- TRAVEL
-- FOOD
-- OTHER
 
 ##### System Use Case Diagrams
 ![System Use Case Diagrams](https://github.com/MahmoudAhmadOsman/reimbursement-system/blob/main/src/main/resources/design/ERS%20Use%20Case%20Diagram.png)

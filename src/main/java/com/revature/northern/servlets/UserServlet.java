@@ -92,7 +92,6 @@ public class UserServlet extends HttpServlet {
     }
 
 
-
     //Only ADMIN can delete
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
