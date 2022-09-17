@@ -212,7 +212,7 @@ ADD NEW REIMBURSEMENT STATUS
 "amount": "80.65",
 "description": "CREDIT CARD PAYMENT",
 "receipt": "PAID",
-"payment_id":"400",
+"payment_id":"UDS400-D12A",
 "author_id": "6652d73b-c01a-4213-82e1-b1ac579e3682",
 "resolver_id": "6652d73b-c01a-4213-82e1-b1ac579e3682",
 "status_id": "300",
