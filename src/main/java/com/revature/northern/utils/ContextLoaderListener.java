@@ -38,18 +38,13 @@ public class ContextLoaderListener implements ServletContextListener {
         context.addServlet("UserServlet", userServlet).addMapping("/users/*"); // all users
         //context.addServlet("UserServlet", userServlet).addMapping("/users/auth"); //  user login
 
-
         //UserRoles route
         context.addServlet("UserRoleServlet", userRoleServlet).addMapping("/users/roles");  //northern/roles
-
         context.addServlet("ReimbursementTypeServlet", reimbursementTypeServlet).addMapping("/types");
-
         //Reimbursement Status
         context.addServlet("ReimbursementStatusServlet", reimbursementStatusServlet).addMapping("/types/status");
-
         //Reimbursements rout
         context.addServlet("ReimbursementServlet", reimbursementServlet).addMapping("/reimbursements"); //northern/reimbursements
-
 
     }
 

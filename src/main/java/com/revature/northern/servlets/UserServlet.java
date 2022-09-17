@@ -51,7 +51,7 @@ public class UserServlet extends HttpServlet {
     }
 
 
-    //Only ADMIN & PRINCIPAL can view the list
+    //Only ADMIN, MANAGER & PRINCIPAL can view the list
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -59,7 +59,7 @@ public class UserServlet extends HttpServlet {
         Principal principal = tokenService.extractRequesterDetails(token);
 
         try {
-            if (principal.getRole().equals("ADMIN") || principal.getRole().equals("PRINCIPAL")) {
+            if (principal.getRole().equals("ADMIN") || principal.getRole().equals("PRINCIPAL") || principal.getRole().equals("MANAGER")) {
 
                 String username = req.getParameter("username");
                 resp.setContentType("application/json");
@@ -85,16 +85,18 @@ public class UserServlet extends HttpServlet {
     }
 
 
-    // PRINCIPAL can view & update
+    // ADMIN, MANAGER can UPDATE
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPut(req, resp);
+        //TODO implement the UPDATE code here ...
     }
 
 
-    //Only ADMIN can delete
+    //Only ADMIN, MANAGER can DELETE
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doDelete(req, resp);
+        //TODO implement the DELETE code here ...
     }
 }
